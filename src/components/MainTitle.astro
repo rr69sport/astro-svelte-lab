@@ -1,0 +1,33 @@
+<h1>
+  <span>Astro</span>.<span>Svelte</span> Lab
+</h1>
+
+<style>
+  h1 {
+    font-weight: 900;
+    line-height: 1.2;
+    font-size: clamp(2rem, 10vw, 6rem);
+    text-align: center;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    margin-top: 0;
+
+    backdrop-filter: blur(20px);
+    animation: bg-social-media linear both;
+    animation-timeline: scroll();
+    animation-range: 0 250px;
+
+    background-color: var(--dark-color);
+  }
+
+  span {
+    color: var(--main-color);
+  }
+  @keyframes bg-social-media {
+    to {
+      background-color: color-mix(in srgb, var(--light-color), transparent 90%);
+    }
+  }
+</style>

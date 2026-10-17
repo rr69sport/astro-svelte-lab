@@ -1,11 +1,56 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from '@/layouts/Layout.astro'
+import MainTitle from '@/components/MainTitle.astro'
+import Banner from '@/components/Banner.astro'
+import { getFoldersWithImages } from '@/utils/get-folders-with-images'
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const getImages = await getFoldersWithImages('./src/assets/images')
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Astro | Svelte Lab">
+  <MainTitle />
+  <Banner />
+  <ul>
+    {
+      getImages.map((images) => {
+        return (
+          <li>
+            <ul class="image-group">
+              {images.map((image) => (
+                <li class={image.includes('fields_of_utopia') || image.includes('atlantis_nebula') ? 'full-width' : ''}>
+                  <img src={image} />
+                </li>
+              ))}
+            </ul>
+          </li>
+        )
+      })
+    }
+  </ul>
 </Layout>
+
+<style>
+  ul {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .image-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    padding: 3px;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    background-color: var(--main-color);
+
+    & > li:first-child {
+      grid-column: 1 / -1;
+    }
+  }
+  .full-width {
+    grid-column: 1 / -1;
+  }
+</style>

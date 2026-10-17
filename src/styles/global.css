@@ -1,0 +1,89 @@
+:root {
+  --main-color: #c3ec0e;
+  --light-color: #f1f1f1;
+  --dark-color: #171920;
+}
+
+::selection {
+  color: var(--dark-color);
+  background-color: var(--main-color);
+}
+
+html {
+  scrollbar-color: var(--main-color) var(--dark-color);
+  /*Syntax: auto | thin | none*/
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--dark-color);
+}
+
+::-webkit-scrollbar-corner {
+  border: none;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--main-color);
+}
+
+:root {
+  /* Syntax: auto | smooth */
+  scroll-behavior: smooth;
+  /* scroll-padding: var(--scroll-padding-custom-property); */
+  /* scroll-margin: var(--scroll-margin-custom-property); */
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background-color: var(--dark-color);
+  color: var(--light-color);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--main-color);
+  text-decoration: none;
+
+  &:visited,
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Utilities */
+.text-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

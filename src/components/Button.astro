@@ -1,0 +1,52 @@
+---
+interface Props {
+  variant?: 'cta' | 'bordered' | 'default'
+  enabled?: boolean
+}
+
+const { variant = 'default', enabled = true } = Astro.props as Props
+---
+
+<button class={`button button--${variant} ${enabled ? '' : 'button--disabled'}`}>
+  <slot name="icon-left">No icon</slot>
+  <slot />
+  <slot name="icon-right">No icon</slot>
+</button>
+
+<style>
+  button {
+    display: block;
+    border: none;
+    background-color: none;
+    padding: 10px 20px;
+    font-size: 100%;
+    cursor: pointer;
+    border-radius: 4px;
+
+    &:focus {
+      outline-width: 2px;
+      outline-style: solid;
+    }
+  }
+
+  .button--default {
+    outline-color: var(--light-color);
+  }
+
+  .button--cta {
+    background-color: var(--main-color);
+    outline-color: var(--main-color);
+  }
+
+  .button--bordered {
+    border: 1px solid;
+    color: var(--main-color);
+    background-color: var(--dark-color);
+  }
+
+  .button--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+</style>
